@@ -17,7 +17,7 @@ import Link from "next/link";
 import {ConnectButton} from "@rainbow-me/rainbowkit";
 
 export function SpendAndSave() {
-	const {address, isConnected, chain} = useConnection();
+	const {address, isConnected} = useConnection();
 	const {connect} = useConnect();
 	const {disconnect} = useDisconnect();
 	const {writeContract, data: hash, isPending} = useWriteContract();
@@ -57,17 +57,13 @@ export function SpendAndSave() {
 		},
 	});
 
-	useEffect(() => {
-		if (isConfirmed) {
-			refetchUserData();
-			setSendAmount("");
-			setRecipientAddress("");
-		}
-	}, [isConfirmed, refetchUserData]);
-
-	const handleConnect = () => {
-		connect({connector: injected()});
-	};
+	// useEffect(() => {
+	// 	if (isConfirmed) {
+	// 		refetchUserData();
+	// 		setSendAmount("");
+	// 		setRecipientAddress("");
+	// 	}
+	// }, [isConfirmed, refetchUserData]);
 
 	const handleSetSavingsRate = () => {
 		if (
@@ -170,17 +166,7 @@ export function SpendAndSave() {
 						</button>
 					</div>
 
-					<div className="text-xs text-blue-100 flex items-center justify-between">
-						<span>
-							{address?.slice(0, 8)}...{address?.slice(-6)}
-						</span>
-						<button
-							onClick={() => disconnect()}
-							className="text-red-200 hover:text-red-100"
-						>
-							Disconnect
-						</button>
-					</div>
+					<ConnectButton/>
 				</div>
 			</div>
 

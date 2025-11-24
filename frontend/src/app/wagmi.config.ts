@@ -1,41 +1,21 @@
-import {createConfig, http} from "wagmi";
+import {http} from "wagmi";
 import {getDefaultConfig} from "@rainbow-me/rainbowkit";
-import {
-	arbitrum,
-	base,
-	mainnet,
-	optimism,
-	polygon,
-	sepolia,
-	celoAlfajores,
-} from "wagmi/chains";
-
-// export const wagmiConfig = createConfig({
-// 	chains: [celoAlfajores],
-// 	connectors: [
-// 		metaMask({
-// 			dappMetadata: {
-// 				name: process.env.NEXT_PUBLIC_PROJECT_NAME,
-// 			},
-// 		}),
-// 		injected(),
-// 	],
-// 	ssr: false,
-// 	transports: {
-// 		[celoAlfajores.id]: http(),
-// 	},
-// });
+import {sepolia, celoAlfajores, celo} from "wagmi/chains";
 
 export const wagmiConfig = getDefaultConfig({
 	appName: "Savium",
 	projectId: process.env.NEXT_PUBLIC_PROJECT_ID || "",
 	chains: [
+		celo,
 		celoAlfajores,
 		...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
 			? [sepolia]
 			: []),
 	],
 	ssr: true,
+	transports: {
+		[celoAlfajores.id]: http("https://forno.celo-sepolia.celo-testnet.org"),
+	},
 });
 
 declare module "wagmi" {
