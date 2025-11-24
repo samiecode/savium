@@ -1,0 +1,7 @@
+SpendAndSaveTest:testGetUserTransactions() (gas: 419569)
+SpendAndSaveTest:testInitialState() (gas: 7961)
+SpendAndSaveTest:testRevertWhenWithdrawNoSavings() (gas: 19042)
+SpendAndSaveTest:testSetSavingsRate() (gas: 41905)
+SpendAndSaveTest:testSpendAndSaveCustomRate() (gas: 288123)
+SpendAndSaveTest:testSpendAndSaveDefaultRate() (gas: 266999)
+SpendAndSaveTest:testWithdrawSavings() (gas: 260475)
